@@ -65,9 +65,13 @@ def preparedb(self, db):
  
     if db == '300VW':
         def init(self):
+            # Predefined test categories
             catC = ['410', '411', '516', '517', '526', '528', '529', '530', '531', '533', '557', '558', '559', '562']
+            catA = ['114', '124', '125', '126', '150', '158', '401', '402', '505', '506', '507', '508', '509', '510', '511', '514', '515', '518', '519', '520', '521', '522', '524', '525', '537', '538', '540', '541', '546', '547', '548']
+            catB = ['203', '208', '211', '212', '213', '214', '218', '224', '403', '404', '405', '406', '407', '408', '409', '412',
+             '550', '551', '553']
             mylist = next(os.walk(self.path))[1]
-            data = dict.fromkeys(sorted(set(mylist) - set(catC)))
+            data = dict.fromkeys(sorted(set(mylist) - set(catC) - set(catA) - set(catB)))
             for i,name in enumerate(data.keys()):
                 pathtocheck = self.path + name + '/frames/'
                 files = list(map(lambda x: x.split('/')[-1], sorted(glob.glob(f'{pathtocheck}/*.jpg'))))
