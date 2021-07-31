@@ -71,8 +71,8 @@ def preparedb(self, db):
             for i,name in enumerate(data.keys()):
                 pathtocheck = self.path + name + '/frames/'
                 files = list(map(lambda x: x.split('/')[-1], sorted(glob.glob(f'{pathtocheck}/*.jpg'))))
-                pathtocheck = self.path + name + '/pts.pt'
-                pts = torch.load(pathtocheck)
+                pathtocheck = self.path + name + '/' + name + '.npy'
+                pts = torch.from_numpy(np.load(pathtocheck))
                 data[name] = dict(zip(files,pts))
             setattr(self, 'data', data)
             setattr(self, 'map', [(x,y) for x in data.keys() for y in data[x].keys()])
