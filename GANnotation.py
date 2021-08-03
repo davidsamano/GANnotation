@@ -13,9 +13,11 @@ class GANnotation:
         self.enable_cuda = enable_cuda
         self.size = 128
         self.tight = 16
-        net_weigths = torch.load(path_to_model,map_location=lambda storage, loc: storage)
-        net_dict = {k.replace('module.',''): v for k, v in net_weigths['state_dict'].items()}
-        self.GEN.load_state_dict(net_dict)
+        # net_weigths = torch.load(path_to_model,map_location=lambda storage, loc: storage)
+        # net_weights = torch.load_state_dict(path_to_model,map_location=lambda storage, loc: storage)
+        # print(net_weigths.state_dict()['keys'])
+        # net_dict = {k.replace('module.',''): v for k, v in net_weigths['state_dict'].items()}
+        self.GEN.load_state_dict(torch.load(path_to_model), strict=False)
         if self.enable_cuda:
             self.GEN = self.GEN.cuda()
         self.GEN.eval()

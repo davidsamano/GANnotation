@@ -70,8 +70,10 @@ def preparedb(self, db):
             catA = ['114', '124', '125', '126', '150', '158', '401', '402', '505', '506', '507', '508', '509', '510', '511', '514', '515', '518', '519', '520', '521', '522', '524', '525', '537', '538', '540', '541', '546', '547', '548']
             catB = ['203', '208', '211', '212', '213', '214', '218', '224', '403', '404', '405', '406', '407', '408', '409', '412',
              '550', '551', '553']
+            
+            catD = ['002', '004', '009', '013', '016', '017', '020', '022', '028', '029', '033', '035', '039', '043', '044', '046', '057', '112', '119', '143']
             mylist = next(os.walk(self.path))[1]
-            data = dict.fromkeys(sorted(set(mylist) - set(catC) - set(catA) - set(catB)))
+            data = dict.fromkeys(sorted(set(mylist) - set(catC) - set(catA) - set(catB) - set(catD)))
             for i,name in enumerate(data.keys()):
                 pathtocheck = self.path + name + '/frames/'
                 files = list(map(lambda x: x.split('/')[-1], sorted(glob.glob(f'{pathtocheck}/*.jpg'))))

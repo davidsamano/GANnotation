@@ -46,7 +46,7 @@ def main():
         print( losses , file=f)
     GANnotation = model(losses=losses, gradclip=int(args.gc), gantype=args.gantype, edge=args.use_edge)
     if args.resume:
-        GANnotation._resume(path_to_gen=args.resume + str(args.start_epoch)+'.gen.pth', path_to_dis=args.resume + str(args.start_epoch) + 'dis.pth')
+        GANnotation._resume(path_gen='/content/GANnotation/training/Exp_2/model_4.gen.pth', path_dis='/content/GANnotation/training/Exp_2/model_4.dis.pth')
     
     # define the plotting keys
     plotkeys = ['input','target','generated']
@@ -100,7 +100,7 @@ def main():
     path_to_model = os.path.join(args.folder,args.file)
 
     # train
-    for epoch in range(0,80):
+    for epoch in range(0,10):
         train_epoch(videoloader, GANnotation, myoptimizers, epoch, args.bSize)
         GANnotation._save(path_to_model,epoch)
         schedulerDIS.step()
